@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Triangles {
@@ -12,8 +11,9 @@ public class Triangles {
         screen = new Screen(new Dimension(frame.getWidth(),frame.getHeight()));
         screen.setLayout(new GridLayout(1,1,0,0));
         frame.add(screen);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
     }
 
     public static void main(String[] args) {

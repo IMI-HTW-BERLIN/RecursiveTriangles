@@ -51,6 +51,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-.gitignore
 .idea/workspace.xml
 out/
+/.idea/modules.xml

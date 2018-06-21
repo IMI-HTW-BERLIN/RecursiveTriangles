@@ -23,9 +23,9 @@ public class Screen extends JPanel {
             width = dimension.width;
             height = (int) (dimension.width / 2 * Math.sqrt(3));
         }
-        polygon.addPoint(0,0);
-        polygon.addPoint(width,0);
-        polygon.addPoint(width/2, height);
+        polygon.addPoint(0, height);
+        polygon.addPoint(width / 2,0);
+        polygon.addPoint(width, height);
         return polygon;
     }
 
