@@ -4,8 +4,7 @@ import java.awt.*;
 public class Screen extends JPanel {
     Dimension dimension;
 
-    public Screen(Dimension dimension) {
-        this.dimension = dimension;
+    public Screen() {
         repaint();
     }
 
@@ -14,6 +13,7 @@ public class Screen extends JPanel {
     }
 
     private Polygon triangle() {
+        Dimension dimension = getSize();
         Polygon polygon = new Polygon();
         int height,width = 0;
         if(dimension.width > dimension.height) {
