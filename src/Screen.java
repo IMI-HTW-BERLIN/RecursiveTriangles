@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Screen extends JPanel {
     Boolean firstTime = true;
+    int maximum = 50;
 
 
     public Screen() {
@@ -10,17 +11,18 @@ public class Screen extends JPanel {
     }
 
     public void paint(Graphics g) {
-        int width = (getWidth() > (getHeight() / Math.sqrt(3) * 2)) ? (int) (getHeight() / Math.sqrt(3) * 2) : getWidth();
-        g.drawPolygon(setUp(new Point(0,getHeight()),width,g));
-        g.drawPolygon(triangle(new Point(0,getHeight()),width,g));
+        int temp = (int) (getHeight() / Math.sqrt(3) * 2);
+        int width = (getWidth() > temp) ? temp : getWidth();
+        g.drawPolygon(setUp(new Point(0, getHeight()), width));
+        g.drawPolygon(triangle(new Point(0, getHeight()), width, g));
 
     }
 
-    private Polygon setUp(Point p, int width, Graphics g) {
+    private Polygon setUp(Point p, int width) {
         Polygon polygon = new Polygon();
-        polygon.addPoint(p.x,p.y);
-        polygon.addPoint(p.x+width,p.y);
-        polygon.addPoint(p.x+width/2, p.y-(int) (width/2*Math.sqrt(3)));
+        polygon.addPoint(p.x, p.y);
+        polygon.addPoint(p.x + width, p.y);
+        polygon.addPoint(p.x + width / 2, p.y - (int) (width / 2 * Math.sqrt(3)));
         return polygon;
 
     }
@@ -32,40 +34,50 @@ public class Screen extends JPanel {
 
         polygon.addPoint(p.x + width / 2, p.y);
         polygon.addPoint(center.x, center.y);
-        polygon.addPoint(center.x + width/2, center.y);
+        polygon.addPoint(center.x + width / 2, center.y);
 
-        if (width > 50) {
-            g.drawPolygon(triangle(new Point(centerOf(p, new Point(p.x+width / 2, height))), width / 2,g));
-            g.drawPolygon(triangle(new Point(p.x, p.y), width / 2,g));
-            g.drawPolygon(triangle(new Point(p.x + width / 2, p.y), width / 2,g));
+        if (width > maximum) {
+            g.drawPolygon(triangle(new Point(centerOf(p, new Point(p.x + width / 2, height))), width / 2, g));
+            g.drawPolygon(triangle(new Point(p.x, p.y), width / 2, g));
+            g.drawPolygon(triangle(new Point(p.x + width / 2, p.y), width / 2, g));
         }
-
+        g.setColor(level(width));
+        g.fillPolygon(polygon);
         return polygon;
 
     }
 
-    private Point centerOf (Point p1, Point p2) {
+    private Point centerOf(Point p1, Point p2) {
         Point c = new Point();
-        int x = Math.round((float) (p1.x+p2.x)/2);
-        int y = (p1.y+p2.y)/2;
-        c.setLocation(x,y);
+        int x = Math.round((float) (p1.x + p2.x) / 2);
+        int y = (p1.y + p2.y) / 2;
+        c.setLocation(x, y);
         return c;
     }
 
-    private Polygon triangleOpt1 (Point p, int width, Graphics g) {
+    private Polygon triangleOpt1(Point p, int width, Graphics g) {
         Polygon polygon = new Polygon();
-        polygon.addPoint(p.x,p.y);
-        polygon.addPoint(p.x+width,p.y);
-        polygon.addPoint(p.x+width/2, p.y-(int) (width/2*Math.sqrt(3)));
+        polygon.addPoint(p.x, p.y);
+        polygon.addPoint(p.x + width, p.y);
+        polygon.addPoint(p.x + width / 2, p.y - (int) (width / 2 * Math.sqrt(3)));
 
-        if(width > 100) {
+        if (width > 100) {
             int height = p.y - (int) (width / 2 * Math.sqrt(3));
-            g.drawPolygon(triangleOpt1(new Point(centerOf(p, new Point(p.x+width / 2, height))), width / 2,g));
-            g.drawPolygon(triangleOpt1(new Point(p.x, p.y), width / 2,g));
-            g.drawPolygon(triangleOpt1(new Point(p.x + width / 2, p.y), width / 2,g));
+            g.drawPolygon(triangleOpt1(new Point(centerOf(p, new Point(p.x + width / 2, height))), width / 2, g));
+            g.drawPolygon(triangleOpt1(new Point(p.x, p.y), width / 2, g));
+            g.drawPolygon(triangleOpt1(new Point(p.x + width / 2, p.y), width / 2, g));
         }
 
         return polygon;
+    }
+
+    private Color level(int factor) {
+        Color color = new Color(1000000000+33333*factor);
+        return color;
+    }
+
+    public void setMaximum(int maximum){
+        this.maximum = maximum;
     }
 
 
