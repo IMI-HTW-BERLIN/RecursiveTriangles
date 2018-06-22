@@ -1,14 +1,15 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 public class Triangles {
-    private JFrame frame;
     private Screen screen;
 
-    public Triangles() {
-        frame = new JFrame();
+    private Triangles() {
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen = new Screen();
         screen.setMaximum(25);
@@ -35,7 +36,16 @@ public class Triangles {
             }
 
         });
+
+        JSlider size = new JSlider(JSlider.HORIZONTAL,1,1000,100);
+        size.addChangeListener(e -> {
+            screen.setMaximum(size.getValue());
+            screen.repaint();
+        });
+
+
         frame.add(screen);
+        frame.add(size,BorderLayout.SOUTH);
         frame.pack();
         frame.setVisible(true);
         screen.repaint();

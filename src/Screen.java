@@ -2,11 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Screen extends JPanel {
-    Boolean firstTime = true;
-    int maximum = 50;
+    private int maximum = 50;
 
 
-    public Screen() {
+    Screen() {
         repaint();
     }
 
@@ -55,30 +54,29 @@ public class Screen extends JPanel {
         return c;
     }
 
-    private Polygon triangleOpt1(Point p, int width, Graphics g) {
-        Polygon polygon = new Polygon();
-        polygon.addPoint(p.x, p.y);
-        polygon.addPoint(p.x + width, p.y);
-        polygon.addPoint(p.x + width / 2, p.y - (int) (width / 2 * Math.sqrt(3)));
-
-        if (width > 100) {
-            int height = p.y - (int) (width / 2 * Math.sqrt(3));
-            g.drawPolygon(triangleOpt1(new Point(centerOf(p, new Point(p.x + width / 2, height))), width / 2, g));
-            g.drawPolygon(triangleOpt1(new Point(p.x, p.y), width / 2, g));
-            g.drawPolygon(triangleOpt1(new Point(p.x + width / 2, p.y), width / 2, g));
-        }
-
-        return polygon;
-    }
-
     private Color level(int factor) {
-        Color color = new Color(1000000000+33333*factor);
-        return color;
+        return new Color(1000000000+33333*factor);
     }
 
-    public void setMaximum(int maximum){
+    void setMaximum(int maximum){
         this.maximum = maximum;
     }
+
+//    private Polygon triangleOpt1(Point p, int width, Graphics g) {
+//        Polygon polygon = new Polygon();
+//        polygon.addPoint(p.x, p.y);
+//        polygon.addPoint(p.x + width, p.y);
+//        polygon.addPoint(p.x + width / 2, p.y - (int) (width / 2 * Math.sqrt(3)));
+//
+//        if (width > 100) {
+//            int height = p.y - (int) (width / 2 * Math.sqrt(3));
+//            g.drawPolygon(triangleOpt1(new Point(centerOf(p, new Point(p.x + width / 2, height))), width / 2, g));
+//            g.drawPolygon(triangleOpt1(new Point(p.x, p.y), width / 2, g));
+//            g.drawPolygon(triangleOpt1(new Point(p.x + width / 2, p.y), width / 2, g));
+//        }
+//
+//        return polygon;
+//    }
 
 
 }
