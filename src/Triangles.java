@@ -9,12 +9,13 @@ public class Triangles {
 
     public Triangles() {
         frame = new JFrame();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen = new Screen();
-        screen.setPreferredSize(new Dimension(500,500));
+        screen.setPreferredSize(new Dimension(600,500));
         screen.addComponentListener(new ComponentListener() {
             @Override
             public void componentResized(ComponentEvent e) {
-                screen.setPreferredSize(screen.getSize());
+                screen.repaint();
             }
 
             @Override
