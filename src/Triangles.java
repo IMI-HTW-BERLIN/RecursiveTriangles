@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -12,7 +10,7 @@ public class Triangles {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen = new Screen();
-        screen.setMaximum(25);
+        screen.setMinimumWidth(25);
         screen.setPreferredSize(new Dimension(600,500));
         screen.addComponentListener(new ComponentListener() {
             @Override
@@ -39,7 +37,7 @@ public class Triangles {
 
         JSlider size = new JSlider(JSlider.HORIZONTAL,1,1000,100);
         size.addChangeListener(e -> {
-            screen.setMaximum(size.getValue());
+            screen.setMinimumWidth(size.getValue());
             screen.repaint();
         });
 

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Screen extends JPanel {
-    private int maximum = 50;
+    private int minimumWidth = 50;
 
 
     Screen() {
@@ -35,7 +35,7 @@ public class Screen extends JPanel {
         polygon.addPoint(center.x, center.y);
         polygon.addPoint(center.x + width / 2, center.y);
 
-        if (width > maximum) {
+        if (width > minimumWidth) {
             g.drawPolygon(triangle(new Point(centerOf(p, new Point(p.x + width / 2, height))), width / 2, g));
             g.drawPolygon(triangle(new Point(p.x, p.y), width / 2, g));
             g.drawPolygon(triangle(new Point(p.x + width / 2, p.y), width / 2, g));
@@ -56,8 +56,8 @@ public class Screen extends JPanel {
         return new Color(1000000000+33333*factor);
     }
 
-    void setMaximum(int maximum){
-        this.maximum = maximum;
+    void setMinimumWidth(int minimumWidth){
+        this.minimumWidth = minimumWidth;
     }
 
 //    private Polygon triangleOpt1(Point p, int width, Graphics g) {
