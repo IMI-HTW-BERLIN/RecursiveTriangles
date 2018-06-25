@@ -10,7 +10,7 @@ public class Triangles {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen = new Screen();
-        screen.setMinimumWidth(25);
+        screen.setMinimumWidth(100);
         screen.setPreferredSize(new Dimension(600,500));
         screen.addComponentListener(new ComponentListener() {
             @Override

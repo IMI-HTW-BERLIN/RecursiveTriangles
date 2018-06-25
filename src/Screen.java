@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Screen extends JPanel {
     private int minimumWidth = 50;
@@ -40,7 +41,9 @@ public class Screen extends JPanel {
             g.drawPolygon(triangle(new Point(p.x, p.y), width / 2, g));
             g.drawPolygon(triangle(new Point(p.x + width / 2, p.y), width / 2, g));
         }
-        g.setColor(level(width));
+        //g.setColor(Color.BLACK);
+        //g.setColor(random());
+        //g.setColor(level(width));
         g.fillPolygon(polygon);
         return polygon;
 
@@ -54,6 +57,10 @@ public class Screen extends JPanel {
 
     private Color level(int factor) {
         return new Color(1000000000+33333*factor);
+    }
+
+    private Color random() {
+        return new Color(new Random().nextInt(0xFFFFFF));
     }
 
     void setMinimumWidth(int minimumWidth){
