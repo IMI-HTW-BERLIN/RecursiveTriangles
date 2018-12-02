@@ -41,9 +41,7 @@ public class Screen extends JPanel {
             g.drawPolygon(triangle(new Point(p.x, p.y), width / 2, g));
             g.drawPolygon(triangle(new Point(p.x + width / 2, p.y), width / 2, g));
         }
-        //g.setColor(Color.BLACK);
-        //g.setColor(random());
-        //g.setColor(level(width));
+        g.setColor(Color.BLACK);
         g.fillPolygon(polygon);
         return polygon;
 
@@ -66,22 +64,4 @@ public class Screen extends JPanel {
     void setMinimumWidth(int minimumWidth){
         this.minimumWidth = minimumWidth;
     }
-
-//    private Polygon triangleOpt1(Point p, int width, Graphics g) {
-//        Polygon polygon = new Polygon();
-//        polygon.addPoint(p.x, p.y);
-//        polygon.addPoint(p.x + width, p.y);
-//        polygon.addPoint(p.x + width / 2, p.y - (int) (width / 2 * Math.sqrt(3)));
-//
-//        if (width > 100) {
-//            int height = p.y - (int) (width / 2 * Math.sqrt(3));
-//            g.drawPolygon(triangleOpt1(new Point(centerOf(p, new Point(p.x + width / 2, height))), width / 2, g));
-//            g.drawPolygon(triangleOpt1(new Point(p.x, p.y), width / 2, g));
-//            g.drawPolygon(triangleOpt1(new Point(p.x + width / 2, p.y), width / 2, g));
-//        }
-//
-//        return polygon;
-//    }
-
-
 }
